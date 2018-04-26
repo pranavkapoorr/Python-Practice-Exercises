@@ -11,9 +11,9 @@ Extras:
 Ask the user to specify the name of the output file that will be saved.
 '''
 def writeToFile(fileName , textToWrite):
-    file = open(fileName + '.txt', 'w')
-    file.write(textToWrite)
-    file.close()
+    fileX = open(fileName + '.txt', 'w')
+    fileX.write(textToWrite)
+    fileX.close()
     print("Successfully Written to file!")
 
 content = "Hi there, I am new text file generated using Python ... !"

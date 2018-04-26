@@ -13,33 +13,33 @@ it will be clear which part represents the scene category. To do this, you’re go
 I talked a little bit about it in this post.
 '''
 
-'''def readFromFile(fileName):
+def readFromFile1(fileName):
     dic = {}
-    file = open(fileName + '.txt', 'r')
-    while file.readline():
-        line = file.readline().strip()
+    fileX = open(fileName + '.txt', 'r')
+    while fileX.readline():
+        line = fileX.readline().strip()
         if line in dic:
             dic[line] += 1
         else:
             dic[line] = 1
-    file.close()
+    fileX.close()
     return dic
 
-print(readFromFile("namelist"))'''
+print(readFromFile1("resources/ex22/namelist"))
 
 
-def readFromFile(fileName):
+def readFromFile2(fileName):
     dic = {}
-    file = open(fileName + '.txt', 'r')
-    while file.readline():
-        line = file.readline().strip()[3:-25]
+    filex = open(fileName + '.txt', 'r')
+    while filex.readline():
+        line = filex.readline().strip()[3:-25]
         if line in dic:
             dic[line] += 1
         else:
             dic[line] = 1
-    file.close()
+    filex.close()
     return dic
 
-print(readFromFile("training_01"))
+print(readFromFile2("resources/ex22/training_01"))
 
 
