@@ -25,14 +25,19 @@ def horizontal(size):
     for i in range(size):
         strng = strng + (" ---")      
     return strng
+
 def vertical(size):
     strng = ""
     for i in range(size):
         strng = strng + ("|   ")      
     return strng
+
 def createGameBoard(size):
     strng = ""
-    strng = strng + horizontal(size) +"\n"+vertical(size+1) + "\n" + horizontal(size) + "\n"
+    for i in range(size):
+        strng = strng + horizontal(size) +"\n"+vertical(size+1) + "\n" 
+        if i == size - 1:
+            strng = strng + horizontal(size) + "\n"
     return strng
 
-print(createGameBoard(3))
+print(createGameBoard(13))
