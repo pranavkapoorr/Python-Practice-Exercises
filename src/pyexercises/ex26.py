@@ -32,12 +32,16 @@ def checkWinner(listX):
     l1 = listX[0]
     l2 = listX[1]
     l3 = listX[2]
-    if l1[0] == l2[1] and l1[0] == l3[2] or l1[0] == l2[0] and l1[0] == l3[0] or l1[0] == l1[1] and l1[0] == l1[2]:
-        return l1[0]
-    elif l1[1] == l2[1] and l1[1] == l3[1]:
+    if l1[0] == l2[1] and l1[0] == l3[2] or l1[0] == l2[0] and l1[0] == l3[0] or l1[0] == l1[1] and l1[0] == l1[2] and l1[0] != "empty":
+            return l1[0]
+    elif l1[1] == l2[1] and l1[1] == l3[1] and l1[1] != "empty":
         return l1[1]
-    elif l1[2] == l1[1] and l1[2] == l1[0] or l1[2] == l2[2] and l1[2] == l3[2] or l1[2] == l2[1] and l1[2] == l3[0]:
+    elif l1[2] == l1[1] and l1[2] == l1[0] or l1[2] == l2[2] and l1[2] == l3[2] or l1[2] == l2[1] and l1[2] == l3[0] and l1[2] != "empty":
         return l1[2]
+    elif l2[0] == l2[1] and l2[0] == l2[2] and l2[0] != "empty":
+        return l2[0]
+    elif l3[0] == l3[1] and l3[0] == l3[2] and l3[0] != "empty":
+            return l3[0]
 
 listX = [[1, 2, 0],
          [2, 1, 0],

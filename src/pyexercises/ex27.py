@@ -29,15 +29,109 @@ For the “standard” exercise, don’t worry about “ending” the game - no need to ke
 keep track of how many squares are full and automatically stop asking for moves when there are no more valid moves.
 '''
 
-
-"standard version"
-tictacBoard = [[],[],[]]
-
-def markTictacBoard(row,column,value):
-    realRow = row - 1
-    realColumn = column - 1
-    tictacBoard[realRow[realColumn]]=value
-    print(tictacBoard)
+class TicTacToe:
     
-markTictacBoard(1, 2,"x")
+    "standard version"
+    tictacBoard = [["empty","empty","empty"],["empty","empty","empty"],["empty","empty","empty"]]
     
+    p1 = ""
+    p2 = ""
+    playing = True
+    
+    
+    def __init__(self):
+        self.choose4Player1()
+        print(self.tictacBoard[0])
+        print(self.tictacBoard[1])
+        print(self.tictacBoard[2])
+        while self.playing:
+            self.playerTurn(1)
+            self.checkWinner()
+            self.playerTurn(2)
+            self.checkWinner()    
+    
+    def choose4Player1(self):
+        X_or_0 = input("player 1 -> choose X or 0: ")
+        if X_or_0 == "X" :
+            self.p1 = "X"
+            self.p2 = "0"
+            print("Player 1 -> X and Player 2 -> 0")
+        elif X_or_0 == "0" :
+            self.p1 = "0"
+            self.p2 = "X"
+            print("Player 1 -> 0 and Player 2 -> X")
+        else:
+            print("Invalid Choice--> choose either X or 0")
+            self.choose4Player1()
+        
+    def markTictacBoard(self,row,column,value):
+        realRow = row - 1
+        realColumn = column - 1
+        self.tictacBoard[realRow][realColumn] = value
+        print(self.tictacBoard[0])
+        print(self.tictacBoard[1])
+        print(self.tictacBoard[2])
+        
+    def playerTurn(self,player):
+        if player == 1:
+            coordinates = input("player 1-> input coordinates to mark as 'x,y':").split(",")
+            row = int(coordinates[0])
+            column = int(coordinates[1])
+            if row < 3 and column < 3 and row > 0 and column > 0:
+                if self.checkIfAlreadyFilled(row, column):
+                    self.markTictacBoard(row, column, self.p1)
+                else:
+                    self.playerTurn(1)
+            else:
+                print("coordinates should be from 0-3 only!")
+                self.playerTurn(1)
+        elif player == 2:
+            coordinates = input("player 2-> input coordinates to mark as 'x,y':").split(",")
+            row = int(coordinates[0])
+            column = int(coordinates[1])
+            if row < 3 and column < 3 and row > 0 and column > 0:
+                if self.checkIfAlreadyFilled(row, column):
+                    self.markTictacBoard(row, column, self.p2)
+                else:
+                    self.playerTurn(2)
+            else:
+                print("coordinates should be from 0-3 only!")
+                self.playerTurn(2)
+            
+    def checkIfAlreadyFilled(self, row, column):
+        if self.tictacBoard[row-1][column-1] == "empty":
+            return True
+        else:
+            print("you cannot mark the already marked place!! ")
+            return False
+        
+    def getWinner(self):
+        l1 = self.tictacBoard[0]
+        l2 = self.tictacBoard[1]
+        l3 = self.tictacBoard[2]
+        if l1[0] == l2[1] and l1[0] == l3[2] or l1[0] == l2[0] and l1[0] == l3[0] or l1[0] == l1[1] and l1[0] == l1[2] and l1[0] != "empty":
+            return l1[0]
+        elif l1[1] == l2[1] and l1[1] == l3[1] and l1[1] != "empty":
+            return l1[1]
+        elif l1[2] == l1[1] and l1[2] == l1[0] or l1[2] == l2[2] and l1[2] == l3[2] or l1[2] == l2[1] and l1[2] == l3[0] and l1[2] != "empty":
+            return l1[2]
+        elif l2[0] == l2[1] and l2[0] == l2[2] and l2[0] != "empty":
+            return l2[0]
+        elif l3[0] == l3[1] and l3[0] == l3[2] and l3[0] != "empty":
+            return l3[0]
+        
+    def checkWinner(self):
+        winner = self.getWinner()
+        if winner == self.p1:
+            print("Player 1 wins ***")
+            self.playing = False
+        elif winner == self.p2:
+            print("Player 2 wins ***")
+            self.playing = False
+        
+            
+
+
+game = TicTacToe()    
+        
+
